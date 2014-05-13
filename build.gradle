@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply from: 'https://repository-javafx-gradle-plugin.forge.cloudbees.com/snapshot/javafx.plugin'
+
+version = '1.0'
+
+repositories {
+
+}
+
+dependencies {
+    compile fileTree (dir: "lib/", includes: ['Enzo-0.1.2-SNAPSHOT.jar'])
+}
+
+javafx {
+    appID     = 'JavaFXDemo'
+    appName   = 'JavaFXDemo'
+    mainClass = 'eu.hansolo.fx.Main'
+
+    icons {
+        shortcut = [
+                'icons/icon-16.png', 'icons/icon-16@2x.png',
+                'icons/icon-32.png', 'icons/icon-32@2x.png',
+                'icons/icon-64.png',
+                'icons/icon-128.png', 'icons/icon-128@2x.png',
+                'icons/icon-256.png', 'icons/icon-256@2x.png',
+                'icons/icon-512.png', 'icons/icon-512@2x.png'
+        ]
+        volume = shortcut
+        setup = 'icons/icon-32.png'
+    }
+
+    jfxDeploy {
+        vendor    = 'Gerrit Grunwald'
+        packaging = 'all'
+    }
+
+}
