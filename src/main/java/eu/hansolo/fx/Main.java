@@ -117,99 +117,99 @@ public class Main extends Application {
     private static final double         PREF_PANE_WIDTH = SIZE.getWidth() * 0.9;
     private static final double         SHADOW_OPACITY  = 0.5;
 
-    private static boolean mousePressed = false;
-    private static double  touchX       = 0;
-    private static double  lastTouchX   = 0;
-    private static double  deltaX       = 0;
-    private static double  touchStartX  = 0;
-    private static double  touchStopX   = 0;
-    private PixelReader          pixelReader;
-    private WritableImage        image;
-    private AnchorPane           contentPane;
-    private Pane                 shadowOverlay;
-    private AnchorPane           prefPane;
-    private PerspectiveTransform transformLeft;
-    private PerspectiveTransform transformRight;
-    private ImageView            leftImage;
-    private ImageView            rightImage;
-    private Rectangle            shadowRect;
-    private Timeline             timeline;
-    private long                 pressedStart;
+    private static boolean              mousePressed    = false;
+    private static double               touchX          = 0;
+    private static double               lastTouchX      = 0;
+    private static double               deltaX          = 0;
+    private static double               touchStartX     = 0;
+    private static double               touchStopX      = 0;
+    private PixelReader                 pixelReader;
+    private WritableImage               image;
+    private AnchorPane                  contentPane;
+    private Pane                        shadowOverlay;
+    private AnchorPane                  prefPane;
+    private PerspectiveTransform        transformLeft;
+    private PerspectiveTransform        transformRight;
+    private ImageView                   leftImage;
+    private ImageView                   rightImage;
+    private Rectangle                   shadowRect;
+    private Timeline                    timeline;
+    private long                        pressedStart;
 
-    private AnimationTimer timer;
+    private AnimationTimer              timer;
 
     // ContentPane related
-    private Label  header;
-    private Button settingsButton;
-    private Button exitButton;
+    private Label                       header;
+    private Button                      settingsButton;
+    private Button                      exitButton;
 
     // PrefPane related
-    private FlipPanel flipPanel1;
-    private FlipPanel flipPanel2;
+    private FlipPanel                   flipPanel1;
+    private FlipPanel                   flipPanel2;
 
     // FlipPanel1 frontside    
-    private ToggleGroup toggleGroup;
-    private RadioButton radioButtonGauge;
-    private RadioButton radioButtonSimpleGauge;
-    private RadioButton radioButtonOneEightyGauge;
-    private RadioButton radioButtonSimpleRadarChart;
-    private RadioButton radioButtonLedBargraph;
+    private ToggleGroup                 toggleGroup;
+    private RadioButton                 radioButtonGauge;
+    private RadioButton                 radioButtonSimpleGauge;
+    private RadioButton                 radioButtonOneEightyGauge;
+    private RadioButton                 radioButtonSimpleRadarChart;
+    private RadioButton                 radioButtonLedBargraph;
 
     // FlipPanel1 backside
-    private RadioButton radioButtonLed;
-    private RadioButton radioButtonClock;
-    private RadioButton radioButtonSplitFlap;
-    private RadioButton radioButtonLcdClock;
-    private RadioButton radioButtonSegments;
+    private RadioButton                 radioButtonLed;
+    private RadioButton                 radioButtonClock;
+    private RadioButton                 radioButtonSplitFlap;
+    private RadioButton                 radioButtonLcdClock;
+    private RadioButton                 radioButtonSegments;
 
 
     // FlipPanel2 frontside
-    private RadioButton radioButtonLcd;
-    private RadioButton radioButtonSimpleIndicator;
-    private RadioButton radioButtonRoundLcdClock;
-    private RadioButton radioButtonNotification;
-    private RadioButton radioButtonRadialMenu;
+    private RadioButton                 radioButtonLcd;
+    private RadioButton                 radioButtonSimpleIndicator;
+    private RadioButton                 radioButtonRoundLcdClock;
+    private RadioButton                 radioButtonNotification;
+    private RadioButton                 radioButtonRadialMenu;
 
     // FlipPanel2 backside
-    private RadioButton radioButtonSignalTower;
-    private RadioButton radioButtonOnOffSwitch;
-    private RadioButton radioButtonQlockTwo;
-    private RadioButton radioButtonPushButton;
+    private RadioButton                 radioButtonSignalTower;
+    private RadioButton                 radioButtonOnOffSwitch;
+    private RadioButton                 radioButtonQlockTwo;
+    private RadioButton                 radioButtonPushButton;
 
 
     // Gauge
-    private StackPane gaugePane;
-    private Gauge     gauge;
-    private long      lastGaugeTimerCall;
+    private StackPane                   gaugePane;
+    private Gauge                       gauge;
+    private long                        lastGaugeTimerCall;
 
 
     // SimpleGauge
-    private StackPane   simpleGaugePane;
-    private SimpleGauge simpleGauge;
+    private StackPane                   simpleGaugePane;
+    private SimpleGauge                 simpleGauge;
 
 
     // OneEightyGauge
-    private StackPane      oneEightyGaugePane;
-    private OneEightyGauge oneEightyGauge;
+    private StackPane                   oneEightyGaugePane;
+    private OneEightyGauge              oneEightyGauge;
 
 
     // RadarChart
-    private StackPane        simpleRadarChartPane;
-    private SimpleRadarChart simpleRadarChart;
+    private StackPane                   simpleRadarChartPane;
+    private SimpleRadarChart            simpleRadarChart;
 
 
     // LedBarGraph 
-    private StackPane   ledBargraphPane;
-    private LedBargraph ledBargraph1;
-    private LedBargraph ledBargraph2;
-    private LedBargraph ledBargraph3;
-    private LedBargraph ledBargraph4;
-    private LedBargraph ledBargraph5;
-    private LedBargraph ledBargraph6;
-    private LedBargraph ledBargraph7;
-    private LedBargraph ledBargraph8;
-    private LedBargraph ledBargraph9;
-    private LedBargraph ledBargraph10;
+    private StackPane                   ledBargraphPane;
+    private LedBargraph                 ledBargraph1;
+    private LedBargraph                 ledBargraph2;
+    private LedBargraph                 ledBargraph3;
+    private LedBargraph                 ledBargraph4;
+    private LedBargraph                 ledBargraph5;
+    private LedBargraph                 ledBargraph6;
+    private LedBargraph                 ledBargraph7;
+    private LedBargraph                 ledBargraph8;
+    private LedBargraph                 ledBargraph9;
+    private LedBargraph                 ledBargraph10;
     private Color[] ledBargraphColors = {
         Color.rgb(0, 180, 0),
         Color.rgb(0, 180, 0),
@@ -227,94 +227,94 @@ public class Main extends Application {
         Color.RED,
         Color.RED
     };
-    private long lastLedBargraphTimerCall;
+    private long                        lastLedBargraphTimerCall;
 
     // Led
-    private StackPane ledPane;
-    private Led       led;
+    private StackPane                   ledPane;
+    private Led                         led;
 
 
     // Clock
-    private StackPane clockPane;
-    private Clock     clock;
+    private StackPane                   clockPane;
+    private Clock                       clock;
 
 
     // SplitFlap
-    private StackPane splitFlapPane;
-    private SplitFlap hourLeft;
-    private SplitFlap hourRight;
-    private SplitFlap minLeft;
-    private SplitFlap minRight;
-    private SplitFlap secLeft;
-    private SplitFlap secRight;
-    private long      lastClockTimerCall;
-    private int       hours;
-    private int       minutes;
-    private int       seconds;
+    private StackPane                   splitFlapPane;
+    private SplitFlap                   hourLeft;
+    private SplitFlap                   hourRight;
+    private SplitFlap                   minLeft;
+    private SplitFlap                   minRight;
+    private SplitFlap                   secLeft;
+    private SplitFlap                   secRight;
+    private long                        lastClockTimerCall;
+    private int                         hours;
+    private int                         minutes;
+    private int                         seconds;
 
     // LcdClock
-    private StackPane lcdClockPane;
-    private LcdClock  lcdClock;
+    private StackPane                   lcdClockPane;
+    private LcdClock                    lcdClock;
 
     // Segments    
-    private StackPane      segmentsPane;
-    private SevenSegment   sevenSeg1;
-    private SevenSegment   sevenSeg2;
-    private SevenSegment   sevenSeg3;
-    private SevenSegment   sevenSeg4;
-    private SevenSegment   sevenSeg5;
-    private SixteenSegment sixteenSeg1;
-    private SixteenSegment sixteenSeg2;
-    private SixteenSegment sixteenSeg3;
-    private SixteenSegment sixteenSeg4;
-    private SixteenSegment sixteenSeg5;
-    private MatrixSegment  matrixSeg1;
-    private MatrixSegment  matrixSeg2;
-    private MatrixSegment  matrixSeg3;
-    private MatrixSegment  matrixSeg4;
-    private MatrixSegment  matrixSeg5;
-    private boolean        toggle;
-    private long           lastSegmentTimerCall;
+    private StackPane                   segmentsPane;
+    private SevenSegment                sevenSeg1;
+    private SevenSegment                sevenSeg2;
+    private SevenSegment                sevenSeg3;
+    private SevenSegment                sevenSeg4;
+    private SevenSegment                sevenSeg5;
+    private SixteenSegment              sixteenSeg1;
+    private SixteenSegment              sixteenSeg2;
+    private SixteenSegment              sixteenSeg3;
+    private SixteenSegment              sixteenSeg4;
+    private SixteenSegment              sixteenSeg5;
+    private MatrixSegment               matrixSeg1;
+    private MatrixSegment               matrixSeg2;
+    private MatrixSegment               matrixSeg3;
+    private MatrixSegment               matrixSeg4;
+    private MatrixSegment               matrixSeg5;
+    private boolean                     toggle;
+    private long                        lastSegmentTimerCall;
 
     // Lcd
-    private StackPane lcdPane;
-    private Lcd       lcd;
+    private StackPane                   lcdPane;
+    private Lcd                         lcd;
 
     // SimpleIndicator
-    private StackPane       simpleIndicatorPane;
-    private SimpleIndicator simpleIndicator1;
-    private SimpleIndicator simpleIndicator2;
-    private SimpleIndicator simpleIndicator3;
-    private long            lastSimpleIndicatorCall;
+    private StackPane                   simpleIndicatorPane;
+    private SimpleIndicator             simpleIndicator1;
+    private SimpleIndicator             simpleIndicator2;
+    private SimpleIndicator             simpleIndicator3;
+    private long                        lastSimpleIndicatorCall;
 
     // RoundLcdClock
-    private StackPane     roundLcdClockPane;
-    private RoundLcdClock roundLcdClock;
+    private StackPane                   roundLcdClockPane;
+    private RoundLcdClock               roundLcdClock;
 
     // Notification
-    private StackPane             notificationPane;
-    private Notification.Notifier notifier;
+    private StackPane                   notificationPane;
+    private Notification.Notifier       notifier;
 
     // RadialMenu
-    private StackPane  radialMenuPane;
-    private RadialMenu radialMenu;
+    private StackPane                   radialMenuPane;
+    private RadialMenu                  radialMenu;
 
     // SignalTower
-    private StackPane   signalTowerPane;
-    private SignalTower signalTower;
+    private StackPane                   signalTowerPane;
+    private SignalTower                 signalTower;
 
     // OnOff Switch
-    private StackPane   onOffPane;
-    private OnOffSwitch onOffSwitch;
-    private IconSwitch  iconSwitch;
+    private StackPane                   onOffPane;
+    private OnOffSwitch                 onOffSwitch;
+    private IconSwitch                  iconSwitch;
 
     // QlockTwo
-    private StackPane qlockTwoPane;
-    private QlockTwo  qlockTwo;
+    private StackPane                   qlockTwoPane;
+    private QlockTwo                    qlockTwo;
 
     // TButton 
-    private StackPane tButtonPane;
-    private TButton   tButton1;
+    private StackPane                   tButtonPane;
+    private TButton                     tButton1;
 
 
     @Override public void init() {
@@ -1108,6 +1108,9 @@ public class Main extends Application {
         unManageNode(prefPane);        
         
         prefPane.getChildren().addAll(header, flipPanel1, flipPanel2, close);
+        
+        prefPane.applyCss();
+        prefPane.layout();
     }
         
     private void initShadowOverlay() {
@@ -1336,17 +1339,17 @@ public class Main extends Application {
 
 
     // ******************** Application related *******************************
-    @Override public void start(Stage stage) {
+    @Override public void start(Stage stage) {        
         notifier = NotifierBuilder.create().build();
         
         Pane pane = new Pane();
         pane.getChildren().addAll(contentPane, prefPane, shadowOverlay);
-                
+              
         Scene scene = new Scene(pane, SIZE.getWidth(), SIZE.getHeight());
         scene.setCamera(new PerspectiveCamera());
         scene.getStylesheets().add(Main.class.getResource("styles.css").toExternalForm());
         registerListeners(scene);
-
+        
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
