@@ -1,11 +1,6 @@
 apply plugin: 'java'
 apply from: 'https://repository-javafx-gradle-plugin.forge.cloudbees.com/snapshot/javafx.plugin'
 
-version = '1.0'
-
-repositories {
-
-}
 
 dependencies {
     compile fileTree (dir: "lib/", includes: ['Enzo-0.1.2-SNAPSHOT.jar'])
